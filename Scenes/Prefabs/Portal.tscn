@@ -1,0 +1,148 @@
+[gd_scene load_steps=17 format=3 uid="uid://cypicgtlluxfq"]
+
+[ext_resource type="Texture2D" uid="uid://cbncytwvmsy5m" path="res://Sauce/Sprites/Game-StoneArch.png" id="1_05vcr"]
+[ext_resource type="Script" path="res://Scripts/Portal.gd" id="1_wnead"]
+
+[sub_resource type="Animation" id="Animation_vjax0"]
+resource_name = "Off"
+length = 1.50001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_8h4p8"]
+resource_name = "On"
+length = 1.50001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44]
+}
+
+[sub_resource type="Animation" id="Animation_rqevt"]
+resource_name = "OnLoop"
+length = 1.40001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59]
+}
+
+[sub_resource type="Animation" id="Animation_pv6tj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l8bab"]
+_data = {
+"Off": SubResource("Animation_vjax0"),
+"On": SubResource("Animation_8h4p8"),
+"OnLoop": SubResource("Animation_rqevt"),
+"RESET": SubResource("Animation_pv6tj")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pfjav"]
+animation = &"Off"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xh25d"]
+animation = &"On"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vegro"]
+animation = &"OnLoop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iaxy7"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tqxve"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xe1hi"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wuwu3"]
+states/Off/node = SubResource("AnimationNodeAnimation_pfjav")
+states/Off/position = Vector2(314, 100)
+states/On/node = SubResource("AnimationNodeAnimation_xh25d")
+states/On/position = Vector2(421, 100)
+states/OnLoop/node = SubResource("AnimationNodeAnimation_vegro")
+states/OnLoop/position = Vector2(558, 100)
+transitions = ["Start", "Off", SubResource("AnimationNodeStateMachineTransition_iaxy7"), "Off", "On", SubResource("AnimationNodeStateMachineTransition_tqxve"), "On", "OnLoop", SubResource("AnimationNodeStateMachineTransition_xe1hi")]
+graph_offset = Vector2(-131, -13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyepv"]
+size = Vector2(130, 63)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6djq4"]
+size = Vector2(21, 33)
+
+[node name="Portal" type="Node2D"]
+script = ExtResource("1_wnead")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_05vcr")
+hframes = 30
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l8bab")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_wuwu3")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="EnterArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnterArea"]
+position = Vector2(0, -11.5)
+shape = SubResource("RectangleShape2D_xyepv")
+
+[node name="TpArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TpArea"]
+position = Vector2(0.5, 3.5)
+shape = SubResource("RectangleShape2D_6djq4")
+
+[connection signal="body_entered" from="EnterArea" to="." method="_on_enter_area_body_entered"]
+[connection signal="body_entered" from="TpArea" to="." method="_on_tp_area_body_entered"]

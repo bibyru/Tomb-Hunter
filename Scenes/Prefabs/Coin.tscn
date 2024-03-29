@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://bs4qmj6a3n2ik"]
+
+[ext_resource type="Texture2D" uid="uid://c0h8dqydnx6n4" path="res://Sauce/Sprites/Game-Coin.png" id="1_05nb8"]
+[ext_resource type="Script" path="res://Scripts/Coin.gd" id="1_l2bqi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arkxb"]
+atlas = ExtResource("1_05nb8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dphxe"]
+atlas = ExtResource("1_05nb8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fjr4f"]
+atlas = ExtResource("1_05nb8")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ky2av"]
+atlas = ExtResource("1_05nb8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owmk7"]
+atlas = ExtResource("1_05nb8")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7mod1"]
+atlas = ExtResource("1_05nb8")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfp6d"]
+atlas = ExtResource("1_05nb8")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_35tt7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arkxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dphxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fjr4f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ky2av")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owmk7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7mod1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfp6d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yympb"]
+radius = 6.0
+
+[node name="Coin" type="Node2D" groups=["Coin"]]
+script = ExtResource("1_l2bqi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_35tt7")
+autoplay = "default"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_yympb")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

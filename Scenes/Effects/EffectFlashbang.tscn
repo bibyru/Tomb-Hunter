@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1xyjnl4olpq"]
+
+[ext_resource type="Script" path="res://Scripts/Flashbang.gd" id="1_s3320"]
+
+[node name="Flashbang" type="CanvasLayer"]
+script = ExtResource("1_s3320")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.27451, 0.705882, 1, 1)
+
+[node name="ChopSuey" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="ChopSuey" to="." method="_on_chop_suey_timeout"]

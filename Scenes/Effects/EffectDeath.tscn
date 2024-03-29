@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=3 uid="uid://bprxmthgomo5v"]
+
+[ext_resource type="Texture2D" uid="uid://rnyg23yj6j00" path="res://Sauce/Sprites/adventurer_custom.png" id="1_oryhe"]
+[ext_resource type="Script" path="res://Scripts/EffectDeath.gd" id="2_w1iey"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rwxy"]
+atlas = ExtResource("1_oryhe")
+region = Rect2(704, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi3k0"]
+atlas = ExtResource("1_oryhe")
+region = Rect2(736, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqrwd"]
+atlas = ExtResource("1_oryhe")
+region = Rect2(768, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p88a7"]
+atlas = ExtResource("1_oryhe")
+region = Rect2(800, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bue7q"]
+atlas = ExtResource("1_oryhe")
+region = Rect2(832, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dk21e"]
+atlas = ExtResource("1_oryhe")
+region = Rect2(864, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y2g21"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rwxy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi3k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqrwd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p88a7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bue7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dk21e")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="EffectDeath" type="AnimatedSprite2D"]
+texture_filter = 1
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_y2g21")
+autoplay = "default"
+script = ExtResource("2_w1iey")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

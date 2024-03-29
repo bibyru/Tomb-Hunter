@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://5bftp1i3gmqn"]
+
+[ext_resource type="Texture2D" uid="uid://cuatasx3w4nbs" path="res://Sauce/Sprites/Trap-Spike.png" id="1_7wsrw"]
+[ext_resource type="PackedScene" uid="uid://crgkuhr5l8pbp" path="res://Scenes/Prefabs/Death.tscn" id="2_80py2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0u58k"]
+resource_local_to_scene = true
+size = Vector2(5, 15)
+
+[node name="Spike" type="Node2D"]
+texture_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -15.5)
+texture = ExtResource("1_7wsrw")
+
+[node name="Death" parent="." instance=ExtResource("2_80py2")]
+
+[node name="CollisionShape2D" parent="Death" index="0"]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_0u58k")
+
+[editable path="Death"]

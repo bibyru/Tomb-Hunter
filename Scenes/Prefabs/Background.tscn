@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://duuqii0kdpukp"]
+
+[ext_resource type="Texture2D" uid="uid://cu3ac5oegy563" path="res://Sauce/Sprites/BgLayer1.png" id="1_up2sv"]
+[ext_resource type="Texture2D" uid="uid://cxjprimpw0bkx" path="res://Sauce/Sprites/BgLayer2.png" id="2_xx0wj"]
+
+[node name="Bg" type="CanvasLayer"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Sky" type="ColorRect" parent="ParallaxBackground"]
+z_index = -10
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.890196, 1, 0.980392, 1)
+
+[node name="Overlay" type="ColorRect" parent="ParallaxBackground"]
+z_index = -8
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.890196, 1, 0.980392, 0.717647)
+
+[node name="Overlay2" type="ColorRect" parent="ParallaxBackground"]
+z_index = -6
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.890196, 1, 0.980392, 0.717647)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -9
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture_repeat = 2
+texture = ExtResource("1_up2sv")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -7
+motion_scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture_repeat = 2
+texture = ExtResource("2_xx0wj")
