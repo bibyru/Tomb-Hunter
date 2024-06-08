@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc0rhmn0xij1v"]
+
+[ext_resource type="Script" path="res://Scripts/PointFollower.gd" id="1_dp3t1"]
+[ext_resource type="PackedScene" uid="uid://6hxabnxw0khs" path="res://Scenes/Prefabs/TrapSharpBox.tscn" id="2_ba1wh"]
+
+[node name="MovingSharpBox" type="Node2D" node_paths=PackedStringArray("sharpbox", "point1", "point2")]
+script = ExtResource("1_dp3t1")
+sharpbox = NodePath("SharpBox")
+point1 = NodePath("Point")
+point2 = NodePath("Point2")
+
+[node name="SharpBox" parent="." instance=ExtResource("2_ba1wh")]
+
+[node name="Point" type="Node2D" parent="."]
+position = Vector2(-29, 0)
+
+[node name="Point2" type="Node2D" parent="."]
+position = Vector2(31, 0)

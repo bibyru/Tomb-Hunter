@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1xssyrbrtxbj"]
+
+[ext_resource type="Texture2D" uid="uid://om1sba48gjm5" path="res://Sauce/Sprites/Trap-Track-Hori.png" id="1_cafl3"]
+[ext_resource type="Texture2D" uid="uid://dcoouaq5igw6d" path="res://Sauce/Sprites/Trap-Track-Verti.png" id="2_wf6qf"]
+[ext_resource type="Texture2D" uid="uid://cd1gq2uswr4qg" path="res://Sauce/Sprites/Trap-Track-Junction.png" id="3_hjq3n"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sdn0x"]
+texture = ExtResource("1_cafl3")
+texture_region_size = Vector2i(15, 15)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 0
+1:0/0/terrains_peering_bit/right_side = 0
+1:0/0/terrains_peering_bit/left_side = 0
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 0
+2:0/0/terrains_peering_bit/left_side = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_id5fr"]
+texture = ExtResource("2_wf6qf")
+texture_region_size = Vector2i(15, 15)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 0
+0:1/0/terrains_peering_bit/bottom_side = 0
+0:1/0/terrains_peering_bit/top_side = 0
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 0
+0:2/0/terrains_peering_bit/top_side = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jd071"]
+texture = ExtResource("3_hjq3n")
+texture_region_size = Vector2i(15, 15)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/terrains_peering_bit/right_side = 0
+0:0/0/terrains_peering_bit/bottom_side = 0
+
+[sub_resource type="TileSet" id="TileSet_lf8ek"]
+tile_size = Vector2i(15, 15)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "Track"
+terrain_set_0/terrain_0/color = Color(1, 1, 0.501961, 1)
+sources/0 = SubResource("TileSetAtlasSource_sdn0x")
+sources/1 = SubResource("TileSetAtlasSource_id5fr")
+sources/2 = SubResource("TileSetAtlasSource_jd071")
+
+[node name="TilesTrapTrack" type="TileMap"]
+z_index = -2
+texture_filter = 1
+tile_set = SubResource("TileSet_lf8ek")
+format = 2

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://6hxabnxw0khs"]
+
+[ext_resource type="Texture2D" uid="uid://dmeqvqixy02ox" path="res://Sauce/Sprites/Trap-SharpBox.png" id="1_8nw21"]
+[ext_resource type="PackedScene" uid="uid://crgkuhr5l8pbp" path="res://Scenes/Prefabs/Death.tscn" id="2_ohmw3"]
+
+[node name="SharpBox" type="Node2D"]
+texture_filter = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8nw21")
+
+[node name="Death" parent="." instance=ExtResource("2_ohmw3")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Death"]
+polygon = PackedVector2Array(0, -15, -5, -6, -6, -5, -15, 0, -6, 5, -5, 6, 0, 15, 5, 6, 6, 5, 15, 0, 6, -5, 5, -6)
+
+[editable path="Death"]

@@ -32,13 +32,14 @@ func _input(event):
 
 
 func Die():
-	dead = true
-	statemachine.travel("Die")
-	
-	add_child(EffectDeath.instantiate())
-	
-	if DeathTimer.is_stopped():
-		DeathTimer.start()
+	if dead == false:
+		dead = true
+		statemachine.travel("Die")
+		
+		add_child(EffectDeath.instantiate())
+		
+		if DeathTimer.is_stopped():
+			DeathTimer.start()
 
 func _on_death_timer_timeout():
 	Manager.PlayerDeath()

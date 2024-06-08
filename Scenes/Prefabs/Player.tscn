@@ -226,6 +226,7 @@ hframes = 28
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -13)
+enabled = false
 zoom = Vector2(3.2, 3.2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
